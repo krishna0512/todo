@@ -14,6 +14,12 @@ task_t::task_t (std::string s, bool state) {
 	this->m_size = this->m_content.length();
 }
 
+task_t::task_t (std::string s) {
+	this->m_state = (s[s.find_first_of("]") - 1] == 'x') ? true : false;
+	this->m_content = s.substr (s.find_first_of("]") + 2);
+	this->m_size = this->m_content.length();
+}
+
 std::string task_t::toString (void) {
 	std::string t;
 	t += (this->m_state == false) ? "[ ] " : "[x] ";

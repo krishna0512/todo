@@ -16,6 +16,9 @@ class task_t {
 
 		task_t (void);
 		task_t (std::string, bool);
+		// This parses the input of format to the task.
+		// format: 1.   [ ] First Todo task
+		task_t (std::string);
 		~task_t (void);
 
 		std::string toString (void);
