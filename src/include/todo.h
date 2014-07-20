@@ -35,7 +35,8 @@ class todo_t {
 		// Removes all the undone tasks
 		void cleanup (void);
 
-		std::string toString (void);
+		std::string toStringAll (void);
+		std::string toStringUndone (void);
 };
 
 #endif

@@ -56,9 +56,29 @@ void todo_t::cleanup (void) {
 	}
 }
 
-std::string todo_t::toString (void) {
+std::string todo_t::toStringAll (void) {
 	std::string ret;
 	for (int i=0;i<this->m_length;i++) {
+		ret += std::to_string(i+1);
+		if (i < 9) ret += ".   ";
+		else if (i < 99) ret += ".  ";
+		else if (i < 999) ret += ". ";
+		else ret += ".";
+		ret += this->m_list[i]->toString();
+		ret += "\n";
+	}
+	return ret;
+}
+
+std::string todo_t::toStringUndone (void) {
+	std::string ret;
+	for (int i=0;i<this->m_length;i++) {
+		if (this->m_list[i]->m_state) continue;
+		ret += std::to_string(i+1);
+		if (i < 9) ret += ".   ";
+		else if (i < 99) ret += ".  ";
+		else if (i < 999) ret += ". ";
+		else ret += ".";
 		ret += this->m_list[i]->toString();
 		ret += "\n";
 	}
@@ -77,6 +97,9 @@ int main () {
 	task_t *task1 = new task_t ("This is the second task", false);
 	t->push (task);
 	t->push (task1);
-	std::cout<<t->toString();
+	for (int i=0;i<200;i++) t->push(task1);
+	std::cout<<t->toStringAll();
+	system("clear");
+	std::cout<<t->toStringUndone();
 	return 0;
 }
