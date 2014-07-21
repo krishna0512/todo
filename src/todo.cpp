@@ -31,6 +31,16 @@ task_t* todo_t::getTask (unsigned int index) {
 	return NULL;
 }
 
+void todo_t::setDone (unsigned int index) {
+	if (index < 0 || index >= this->m_length) {
+		//TODO: raise the Exception and catch it at the main
+	}
+
+	for (int i=0;i<this->m_length;i++) {
+		if (i+1 == index) m_list[i]->m_state = true;
+	}
+}
+
 int todo_t::erase (task_t* task) {
 	for (auto i=this->m_list.begin(); i != this->m_list.end(); i++) {
 		if (task->equals (*i)) {
@@ -86,20 +96,3 @@ std::string todo_t::toStringUndone (void) {
 }
 
 #endif
-
-#include <iostream>
-#include <stdio.h>
-using namespace std;
-
-int main () {
-	todo_t *t = new todo_t();
-	task_t *task = new task_t("This is the first task",true);
-	task_t *task1 = new task_t ("This is the second task", false);
-	t->push (task);
-	t->push (task1);
-	for (int i=0;i<200;i++) t->push(task1);
-	std::cout<<t->toStringAll();
-	system("clear");
-	std::cout<<t->toStringUndone();
-	return 0;
-}

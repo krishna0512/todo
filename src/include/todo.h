@@ -26,6 +26,9 @@ class todo_t {
 		// get the task by the index starts by 1
 		task_t* getTask (unsigned int);
 
+		// Sets the particular task as done.
+		void setDone (unsigned int);
+
 		// removes the task matching the decription.
 		int erase (task_t*);
 
