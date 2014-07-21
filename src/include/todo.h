@@ -30,7 +30,7 @@ class todo_t {
 		void setDone (unsigned int);
 
 		// removes the task matching the decription.
-		int erase (task_t*);
+		int erase (int);
 
 		// Clears the whole todo list
 		void clear (void);

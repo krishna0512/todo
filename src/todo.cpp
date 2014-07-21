@@ -41,10 +41,14 @@ void todo_t::setDone (unsigned int index) {
 	}
 }
 
-int todo_t::erase (task_t* task) {
-	for (auto i=this->m_list.begin(); i != this->m_list.end(); i++) {
-		if (task->equals (*i)) {
-			this->m_list.erase(i);
+int todo_t::erase (int index) {
+	if (index < 0 || index >= this->m_length) {
+		//TODO: raise the Exception and catch it at the main
+	}
+
+	for (int i=0;i<this->m_length;i++) {
+		if (i+1 == index) {
+			this->m_list.erase(this->m_list.begin() + i);
 			this->m_length--;
 			return 1;
 		}
