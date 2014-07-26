@@ -20,10 +20,7 @@ int main (int argc, char* argv[]) {
 	for (int i=0;i<argc;i++) arg[i]=argv[i];
 
 	// If no argument is provided list all the undone tasks.
-	if (argc < 2) {
-		arg[1] = "list";
-		argc++;
-	}
+	if (argc < 2) arg[argc++] = "list";
 
 	todo_t* todo = new todo_t();
 
