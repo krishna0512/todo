@@ -32,7 +32,7 @@ int main (int argc, char* argv[]) {
 	ifstream ifile;
 	ofstream ofile;
 
-	// Load the initial file data if any.
+	// Load the initial file data to the todo class (if any).
 	ifile.open (filename);
 	if (ifile.is_open()) {
 		string line;
@@ -110,6 +110,18 @@ int main (int argc, char* argv[]) {
 			todo->erase (x);
 
 			ofile.open (filename);
+			ofile<<todo->toStringAll();
+			ofile.close();
+		}
+		else if (arg[2] == "modify" || arg[2] == "change") {
+			string content = "";
+			// combining all the further options into a string.
+			for (int i=3;i<argc;i++) content += " " + arg[i];
+			content.erase (0,1);
+
+			todo->modifyTask (x, content);
+
+			ofile.open(filename);
 			ofile<<todo->toStringAll();
 			ofile.close();
 		}

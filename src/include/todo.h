@@ -29,6 +29,9 @@ class todo_t {
 		// Sets the particular task as done.
 		void setDone (unsigned int);
 
+		// Changes the content of the task.
+		void modifyTask (unsigned int, std::string);
+
 		// removes the task matching the decription.
 		int erase (int);
 

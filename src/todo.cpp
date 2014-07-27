@@ -36,9 +36,15 @@ void todo_t::setDone (unsigned int index) {
 		//TODO: raise the Exception and catch it at the main
 	}
 
-	for (int i=0;i<this->m_length;i++) {
-		if (i+1 == index) m_list[i]->m_state = true;
+	this->m_list[--index]->m_state = true;
+}
+
+void todo_t::modifyTask (unsigned int index, std::string s) {
+	if (index < 0 || index >= this->m_length) {
+		//TODO: raise the Exception and catch it at the main
 	}
+
+	this->m_list[--index]->m_content = s;
 }
 
 int todo_t::erase (int index) {
