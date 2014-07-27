@@ -17,6 +17,6 @@ Function added to todo till now..
 todo [all]
 todo list [all]
 todo <number> [remove | delete]
-todo <number> done
+todo <number> [done | undone]
 todo <number> [change | modify] <string>
 todo cleanup

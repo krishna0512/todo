@@ -106,6 +106,13 @@ int main (int argc, char* argv[]) {
 			ofile<<todo->toStringAll();
 			ofile.close();
 		}
+		else if (arg[2] == "undone") {
+			todo->setUndone(x);
+
+			ofile.open (filename);
+			ofile<<todo->toStringAll();
+			ofile.close();
+		}
 		else if (arg[2] == "remove" || arg[2] == "delete") {
 			todo->erase (x);
 
