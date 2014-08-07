@@ -1,12 +1,11 @@
 #include <iostream>
 #include <fstream>
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 #include <vector>
 #include <unistd.h>
 #include <string>
 #include <cstring>
-#include <algorithm>
 
 #include "include/task.h"
 #include "include/todo.h"
@@ -121,10 +120,8 @@ int main (int argc, char* argv[]) {
 			ofile.close();
 		}
 		else if (arg[2] == "modify" || arg[2] == "change") {
-			string content = "";
-			// combining all the further options into a string.
-			for (int i=3;i<argc;i++) content += " " + arg[i];
-			content.erase (0,1);
+			// passes the initial string and index as arguments.
+			string content = getContentFromEditor (todo->getTask(x)->m_content, x);
 
 			todo->modifyTask (x, content);
 
