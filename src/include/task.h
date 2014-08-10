@@ -22,6 +22,7 @@ class task_t {
 		~task_t (void);
 
 		std::string toString (void);
+		std::string toStringFormatted (void);
 
 		// Checks if 2 tasks are identical
 		bool equals (task_t*);

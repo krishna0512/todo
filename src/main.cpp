@@ -60,14 +60,14 @@ int main (int argc, char* argv[]) {
 	}
 	else if (arg[1] == "list") {
 		if (arg[2] == "all") {
-			cout<<todo->toStringAll();
+			cout<<todo->toStringAllFormatted();
 		}
 		else {
-			cout<<todo->toStringUndone();
+			cout<<todo->toStringUndoneFormatted();
 		}
 	}
 	else if (arg[1] == "all") {
-		cout<<todo->toStringAll();
+		cout<<todo->toStringAllFormatted();
 	}
 	else if (arg[1] == "add") {
 		string content = "";

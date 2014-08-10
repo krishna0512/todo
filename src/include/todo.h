@@ -45,7 +45,8 @@ class todo_t {
 		void cleanup (void);
 
 		std::string toStringAll (void);
-		std::string toStringUndone (void);
+		std::string toStringAllFormatted (void);
+		std::string toStringUndoneFormatted (void);
 };
 
 #endif

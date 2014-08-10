@@ -88,9 +88,8 @@ std::string todo_t::toStringAll (void) {
 	std::string ret;
 	for (int i=0;i<this->m_length;i++) {
 		ret += std::to_string(i+1);
-		if (i < 9) ret += ".   ";
-		else if (i < 99) ret += ".  ";
-		else if (i < 999) ret += ". ";
+		if (i < 9) ret += ".  ";
+		else if (i < 99) ret += ". ";
 		else ret += ".";
 		ret += this->m_list[i]->toString();
 		ret += "\n";
@@ -98,16 +97,36 @@ std::string todo_t::toStringAll (void) {
 	return ret;
 }
 
-std::string todo_t::toStringUndone (void) {
+std::string todo_t::toStringAllFormatted (void) {
+	std::string ret;
+	for (int i=0;i<this->m_length;i++) {
+		// blue color
+		ret += "\x1b[34m";
+		ret += std::to_string(i+1);
+		if (i < 9) ret += ".  ";
+		else if (i < 99) ret += ". ";
+		else ret += ".";
+		// reset color
+		ret += "\x1b[0m";
+		ret += this->m_list[i]->toStringFormatted();
+		ret += "\n";
+	}
+	return ret;
+}
+
+std::string todo_t::toStringUndoneFormatted (void) {
 	std::string ret;
 	for (int i=0;i<this->m_length;i++) {
 		if (this->m_list[i]->m_state) continue;
+		// blue color
+		ret += "\x1b[34m";
 		ret += std::to_string(i+1);
-		if (i < 9) ret += ".   ";
-		else if (i < 99) ret += ".  ";
-		else if (i < 999) ret += ". ";
+		if (i < 9) ret += ".  ";
+		else if (i < 99) ret += ". ";
 		else ret += ".";
-		ret += this->m_list[i]->toString();
+		// reset color.
+		ret += "\x1b[0m";
+		ret += this->m_list[i]->toStringFormatted();
 		ret += "\n";
 	}
 	return ret;

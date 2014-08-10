@@ -27,6 +27,21 @@ std::string task_t::toString (void) {
 	return t;
 }
 
+std::string task_t::toStringFormatted (void) {
+	std::string t;
+
+	if (this->m_state)
+		// green color
+		t += "\x1b[32m✓  " + this->m_content;
+	else
+		// red color.
+		t += "\x1b[31m✖  " + this->m_content;
+
+	// reset color
+	t += "\x1b[0m";
+	return t;
+}
+
 bool task_t::equals (task_t* t) {
 	if (not this->m_content.compare(t->m_content) and this->m_state == t->m_state) return true;
 	else return false;
