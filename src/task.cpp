@@ -32,10 +32,10 @@ std::string task_t::toStringFormatted (void) {
 
 	if (this->m_state)
 		// green color
-		t += "\x1b[32m✓  " + this->m_content;
+		t += "\x1b[1;32m✓  " + this->m_content;
 	else
 		// red color.
-		t += "\x1b[31m✖  " + this->m_content;
+		t += "\x1b[1;31m✖  " + this->m_content;
 
 	// reset color
 	t += "\x1b[0m";
