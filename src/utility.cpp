@@ -14,7 +14,7 @@ bool isNumber (std::string s) {
 int toNumber (std::string s) {
 	int n=s.length();
 	unsigned int ret=0;
-	for (int i=0;i<n;i++) ret+=ret*10+(s[i]-'0');
+	for (int i=0;i<n;i++) ret = ret*10+(s[i]-'0');
 	return (int)ret;
 }
 
