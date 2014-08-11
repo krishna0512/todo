@@ -74,10 +74,10 @@ int main (int argc, char* argv[]) {
 		// creating the content to be added from all the later paramerters.
 		for (int i=2;i<argc;i++) content += " " + arg[i];
 		content.erase (0,1);
-		if (content.length() == 0) {
-			fprintf (stderr, "Please give some content to your TODO.\nThis implementation still lacks AI, so it can't understand your thoughts.\n");
-			exit (EXIT_FAILURE);
-		}
+
+		// if there is no content provided then open the vim and ask for the content
+		if (content.length() == 0) content += getContentFromEditor ("");
+
 		task_t* task = new task_t(content, false);
 		todo->push (task);
 
@@ -121,7 +121,7 @@ int main (int argc, char* argv[]) {
 		}
 		else if (arg[2] == "modify" || arg[2] == "change" || arg[2] == "edit") {
 			// passes the initial string and index as arguments.
-			string content = getContentFromEditor (todo->getTask(x)->m_content, x);
+			string content = getContentFromEditor (todo->getTask(x)->m_content);
 
 			todo->modifyTask (x, content);
 

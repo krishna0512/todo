@@ -18,11 +18,15 @@ int toNumber (std::string s) {
 	return (int)ret;
 }
 
-std::string getContentFromEditor (std::string initial_content, unsigned int index) {
+std::string getContentFromEditor (std::string initial_content) {
 	std::string filename = "/tmp/todo_temp.tmp";
-	std::ofstream ofile (filename);
-	ofile<<initial_content;
-	ofile.close();
+
+	// If string is not empty only then output the string to the file (OBVIOUSLY!)
+	if (initial_content != "") {
+		std::ofstream ofile (filename);
+		ofile<<initial_content;
+		ofile.close();
+	}
 
 	std::string command = "vim " + filename;
 	// getting the input from the vim command
