@@ -119,7 +119,7 @@ int main (int argc, char* argv[]) {
 			ofile<<todo->toStringAll();
 			ofile.close();
 		}
-		else if (arg[2] == "modify" || arg[2] == "change") {
+		else if (arg[2] == "modify" || arg[2] == "change" || arg[2] == "edit") {
 			// passes the initial string and index as arguments.
 			string content = getContentFromEditor (todo->getTask(x)->m_content, x);
 

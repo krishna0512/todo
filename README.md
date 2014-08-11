@@ -18,5 +18,5 @@ todo [all]
 todo list [all]
 todo <number> [remove | delete]
 todo <number> [done | undone]
-todo <number> [change | modify] <string>
+todo <number> [change | modify | edit] <string>
 todo cleanup
