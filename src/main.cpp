@@ -78,6 +78,11 @@ int main (int argc, char* argv[]) {
 		// if there is no content provided then open the vim and ask for the content
 		if (content.length() == 0) content += getContentFromEditor ("");
 
+		if (content.length() == 0) {
+			fprintf (stderr, "This implementation still lacks AI, so you gotta tell what todo you wanna save..\n");
+			return (EXIT_FAILURE);
+		}
+
 		task_t* task = new task_t(content, false);
 		todo->push (task);
 
