@@ -28,17 +28,49 @@ std::string task_t::toString (void) {
 }
 
 std::string task_t::toStringFormatted (void) {
-	std::string t;
+	std::string t = "";
+	std::string green = "\x1b[1;32m", greenul = "\x1b[1;4;32m", red = "\x1b[1;31m", redul = "\x1b[1;4;31m", reset = "\x1b[0m";
 
-	if (this->m_state)
-		// green color
-		t += "\x1b[1;32m✓  " + this->m_content;
-	else
-		// red color.
-		t += "\x1b[1;31m✖  " + this->m_content;
+	//if (this->m_state)
+		//// green color
+		//t += "\x1b[1;32m✓  " + this->m_content;
+	//else
+		//// red color.
+		//t += "\x1b[1;31m✖  " + this->m_content;
+
+	if (this->m_state) {
+		t += green;
+		bool flag = false;
+		for (auto i:this->m_content) {
+			if (i != '`')
+				t += i;
+			else {
+				if (flag)
+					t += reset + green;
+				else
+					t += greenul;
+				flag ^= true;
+			}
+		}
+	}
+	else {
+		t += red;
+		bool flag = false;
+		for (auto i:this->m_content) {
+			if (i != '`')
+				t += i;
+			else {
+				if (flag)
+					t += reset + red;
+				else
+					t += redul;
+				flag ^= true;
+			}
+		}
+	}
 
 	// reset color
-	t += "\x1b[0m";
+	t += reset;
 	return t;
 }
 
