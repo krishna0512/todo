@@ -24,6 +24,7 @@ Just type the command, **todo** followed by arguments.
 What are the arguments?
 -----------------------
 
+```
 todo [all]
 todo list [all]
 todo add [<string>]
@@ -31,6 +32,7 @@ todo <number> [remove | delete]
 todo <number> [done | undone]
 todo <number> [change | modify | edit] [<string>]
 todo cleanup
+```
 
 How do I report a bug?
 ----------------------
