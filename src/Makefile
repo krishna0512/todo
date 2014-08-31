@@ -28,7 +28,12 @@ install: $(NAME)
 	@echo
 	@echo "Please add this line to your ~/.bashrc or ~/.bash_aliases (for comfort only)"
 	@echo "alias t='todo'"
+	@mkdir -p /usr/local/man/man1/ 2>/dev/null
+	@install -g 0 -o 0 -m 0644 todo.1 /usr/local/man/man1/
+	@gzip /usr/local/man/man1/todo.1
+	
 
 uninstall: clear
 	@rm -rf /usr/bin/todo 2>/dev/null
 	@rm -rf ~/.todo.txt 2>/dev/null
+	@rm -rf /usr/local/man/man1/todo.1.gz 2>/dev/null
