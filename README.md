@@ -1,22 +1,51 @@
-This is a CPP project for a TODO list from terminal
+todo terminal
+=============
 
-This will be completely Object Oriented.
+What is it?
+-----------
 
-to install go to directory ./src and run
+This app can be described as a simple todo app for the linux terminal.
 
-	sudo make install
+Main advantages of this app is that it is fast, lightweight and you don't have to touch your mouse to update or view all your TODO(s).
 
-to uninstall just run.
+How to Install it?
+------------------
 
-	sudo make uninstall
+```
+sudo make install
+```
+
+How to run it?
+--------------
+
+Just type the command, **todo** followed by arguments.
 
 
-
-Function added to todo till now..
+What are the arguments?
+-----------------------
 
 todo [all]
 todo list [all]
+todo add [<string>]
 todo <number> [remove | delete]
 todo <number> [done | undone]
-todo <number> [change | modify | edit] <string>
+todo <number> [change | modify | edit] [<string>]
 todo cleanup
+
+How do I report a bug?
+----------------------
+
+just mail the details to
+
+```
+kt.krishnatulsyan@gmail.com
+```
+
+How do I uninstall it?
+----------------------
+
+In the app directory, just type
+
+```
+sudo make uninstall
+```
