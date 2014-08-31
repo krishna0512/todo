@@ -6,6 +6,8 @@
 #include <unistd.h>
 #include <string>
 #include <cstring>
+#include <sys/types.h>
+#include <pwd.h>
 
 #include "include/task.h"
 #include "include/todo.h"
@@ -24,8 +26,13 @@ int main (int argc, char* argv[]) {
 	todo_t* todo = new todo_t();
 
 	// Calculating the default URL of the file ie. ~/.todo.txt
-	string username (getenv("USER"));
-	string filename = "/home/" + username + "/.todo.txt";
+	struct passwd *pw = getpwuid(getuid());
+	const char *homedir = pw->pw_dir;
+
+	// converts const char to string type
+	string home(homedir,strlen(homedir));
+
+	string filename = home + "/.todo.txt";
 
 	// Streams for various file I/O.
 	ifstream ifile;
