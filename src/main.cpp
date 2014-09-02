@@ -65,6 +65,10 @@ int main (int argc, char* argv[]) {
 		ofile<<todo->toStringAll();
 		ofile.close();
 	}
+	else if (arg[1] == "clear" || arg[1] == "clean") {
+		// removes the ~/.todo.txt file
+		remove (filename.c_str());
+	}
 	else if (arg[1] == "list") {
 		if (arg[2] == "all") {
 			cout<<todo->toStringAllFormatted();
