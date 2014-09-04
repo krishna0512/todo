@@ -32,6 +32,7 @@ todo <number> [remove | delete]
 todo <number> [done | undone]
 todo <number> [change | modify | edit] [<string>]
 todo cleanup
+todo clear
 ```
 
 How do I report a bug?
