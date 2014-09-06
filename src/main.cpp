@@ -145,7 +145,14 @@ int main (int argc, char* argv[]) {
 			ofile<<todo->toStringAll();
 			ofile.close();
 		}
+		else {		
+			fprintf (stderr, "unknown option: %s\nusage :\n\ttodo [all]\n\ttodo list [all]\n\ttodo add [<string>]\n\ttodo <number> [remove | delete]\n\ttodo <number> [done | undone]\n\ttodo <number> [change | modify | edit] [<string>]\n\ttodo cleanup\n\ttodo clear.\n" , argv[2]);
+		}
 	}
+	else {
+		fprintf (stderr, "unknown option: %s\nusage :\n\ttodo [all]\n\ttodo list [all]\n\ttodo add [<string>]\n\ttodo <number> [remove | delete]\n\ttodo <number> [done | undone]\n\ttodo <number> [change | modify | edit] [<string>]\n\ttodo cleanup\n\ttodo clear.\n" , argv[1]);
+	}
+
 
 	exit (EXIT_SUCCESS);
 }

@@ -6,4 +6,4 @@ install:
 	@echo
 
 uninstall:
-	@rm -rf /usr/local/man/man1/todo.1.gz 2>/dev/null
+	@rm -f /usr/local/man/man1/todo.1.gz 2>/dev/null

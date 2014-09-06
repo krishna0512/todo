@@ -1,0 +1,36 @@
+_todo()
+{
+	local cur prev completions
+
+	COMPREPLY=()
+	cur=${COMP_WORDS[COMP_CWORD]}
+	prev=${COMP_WORDS[COMP_CWORD-1]}
+
+	COMMANDS='all list add cleanup clear'
+
+	case "${prev}" in
+		all)
+			completions=""
+			;;
+		list)
+			completions=" all"
+			;;
+		add)
+			completions=""
+			;;
+		cleanup)
+			completions=""
+			;;
+		clear)
+			completions=""
+			;;
+		*)
+			completions="$COMMANDS"
+			;;
+	esac
+
+	COMPREPLY=( $( compgen -W "$completions" $cur ))
+	return 0
+}
+
+complete -F _todo todo
