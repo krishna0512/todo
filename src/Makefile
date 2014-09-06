@@ -28,4 +28,4 @@ install: $(NAME)
 	@install --mode=755 todo /usr/bin
 
 uninstall:
-	@rm -rf /usr/bin/todo 2>/dev/null
+	@rm -r /usr/bin/todo 2>/dev/null
