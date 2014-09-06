@@ -2,6 +2,9 @@
 # each subdirectory consists of tis own makefile.
 # this divides the task of making the software into modules.
 
+all:
+	$(MAKE) -C src/
+
 clear:
 	$(MAKE) -C src/ clear
 
