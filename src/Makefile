@@ -28,6 +28,13 @@ clear:
 clean:
 	rm -rf *.o $(NAME)
 
+ofast:
+	$(CC) $(OPT) -c todo.cpp
+	$(CC) $(OPT) -c task.cpp
+	$(CC) $(OPT) -c utility.cpp
+	$(CC) $(OPT) -c main.cpp
+	$(CC) -o $(NAME) task.o todo.o main.o utility.o $(OPT)
+
 install: $(NAME)
 	@echo "Installing Program.."
 	@mkdir -p $(BINDIR) 2>/dev/null

@@ -6,29 +6,66 @@ _todo()
 	cur=${COMP_WORDS[COMP_CWORD]}
 	prev=${COMP_WORDS[COMP_CWORD-1]}
 
+	if [ ! -f ~/.todo.txt ] 
+	then
+		max=0
+	else
+		max=`wc -l ~/.todo.txt | cut -d' ' -f1`
+	fi
+
 	COMMANDS='all list add cleanup clear'
 
-	case "${prev}" in
-		all)
+	if [[ "$prev" =~ ^-?[0-9]+$ ]]
+	then
+		if [ "$prev" -le "$max" ]
+		then
+			completions="remove delete done undone change modify edit"
+		else
 			completions=""
-			;;
-		list)
-			completions=" all"
-			;;
-		add)
-			completions=""
-			;;
-		cleanup)
-			completions=""
-			;;
-		clear)
-			completions=""
-			;;
-		*)
-			completions="$COMMANDS"
-			;;
-	esac
-
+		fi
+	else
+		case "${prev}" in
+			all)
+				completions=""
+				;;
+			list)
+				completions="all"
+				;;
+			add)
+				completions=""
+				;;
+			cleanup)
+				completions=""
+				;;
+			clear)
+				completions=""
+				;;
+			remove)
+				completions=""
+				;;
+			delete)
+				completions=""
+				;;
+			undone)
+				completions=""
+				;;
+			change)
+				completions=""
+				;;
+			modify)
+				completions=""
+				;;
+			edit)
+				completions=""
+				;;
+			done)
+				completions=""
+				;;
+			*)
+				completions="$COMMANDS"
+				;;
+		esac
+	fi
 	COMPREPLY=( $( compgen -W "$completions" $cur ))
 	return 0
 }
