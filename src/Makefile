@@ -3,6 +3,10 @@ NAME = todo
 OPT_DEVEL = -std=c++0x -Wall -Wno-sign-compare -g -O0
 OPT = -std=c++0x -Wall -Wno-sign-compare -Ofast -flto -funroll-loops
 
+OBJ=todo
+PREFIX=$(DESTDIR)/usr
+BINDIR=$(PREFIX)/bin
+
 $(NAME): todo.o task.o main.o utility.o
 	$(CC) -o $(NAME) task.o todo.o main.o utility.o $(OPT_DEVEL)
 
@@ -26,7 +30,8 @@ clean:
 
 install: $(NAME)
 	@echo "Installing Program.."
-	@install --mode=755 todo /usr/bin
+	@mkdir -p $(BINDIR) 2>/dev/null
+	@install --mode=755 $(OBJ) $(BINDIR)/$(TARGET) || echo "\033[31m FAILED. \033[39m Try "make PREFIX=~ install" ?"
 
 uninstall:
-	@rm -r /usr/bin/todo 2>/dev/null
+	@rm -r $(BINDIR)/$(OBJ) 2>/dev/null

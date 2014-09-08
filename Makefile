@@ -18,10 +18,11 @@ install:
 	@echo
 	@echo "Please add this line to your ~/.bashrc or ~/.bash_aliases (for comfort only)"
 	@echo "alias t='todo'"
-	
+	@echo "Please ensure that the prefix location is in PATH and MANPATH environment variables."
+
 
 uninstall: clear
 	$(MAKE) -C src/ uninstall
 	$(MAKE) -C doc/ uninstall
 	$(MAKE) -C bash_completion/ uninstall
-	@rm -f ~/.todo.txt 2>/dev/null
+	@rm -f ~/.todo.txt
