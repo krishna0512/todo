@@ -14,6 +14,7 @@ _todo()
 	fi
 
 	COMMANDS='all list add cleanup clear'
+	NUMBERS=`seq 0 1 $max`
 
 	if [[ "$prev" =~ ^-?[0-9]+$ ]]
 	then
@@ -21,7 +22,7 @@ _todo()
 		then
 			completions="remove delete done undone change modify edit"
 		else
-			completions=""
+			completions="$NUMBERS"
 		fi
 	else
 		case "${prev}" in
@@ -62,7 +63,7 @@ _todo()
 				completions=""
 				;;
 			*)
-				completions="$COMMANDS"
+				completions="$COMMANDS $NUMBERS"
 				;;
 		esac
 	fi
