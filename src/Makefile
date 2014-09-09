@@ -23,10 +23,10 @@ main.o: main.cpp
 	$(CC) -c -o main.o main.cpp $(OPT_DEVEL)
 
 clear:
-	rm -rf *.o $(NAME)
+	rm -f *.o $(NAME)
 
 clean:
-	rm -rf *.o $(NAME)
+	rm -f *.o $(NAME)
 
 ofast:
 	$(CC) $(OPT) -c todo.cpp
