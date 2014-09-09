@@ -14,7 +14,7 @@ _todo()
 	fi
 
 	COMMANDS='all list add cleanup clear'
-	NUMBERS=`seq 0 1 $max`
+	NUMBERS=`seq 1 1 $max`
 
 	if [[ "$prev" =~ ^-?[0-9]+$ ]]
 	then
