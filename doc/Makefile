@@ -1,9 +1,12 @@
+MAN=todo.1
+PREFIX=$(DESTDIR)/usr
+MANDIR=$(PREFIX)/share/man
+
 install:
 	@echo "Installing Docs and Man Pages.."
-	@mkdir -p /usr/local/man/man1/ 2>/dev/null
-	@install -g 0 -o 0 -m 0644 ../doc/todo.1 /usr/local/man/man1/
-	@gzip -f /usr/local/man/man1/todo.1
-	@echo
+	@mkdir -p $(MANDIR)/man1/ 2>/dev/null
+	@install --mode=644 $(MAN) $(MANDIR)/man1/ || echo "\033[31m FAILED. \033[39m Try "make PREFIX=~ install" ?"
+	@gzip -f $(MANDIR)/man1/$(MAN) || echo "\033[31m FAILED. \033[39m Try "make PREFIX=~ install" ?"
 
 uninstall:
-	@rm -rf /usr/local/man/man1/todo.1.gz 2>/dev/null
+	@rm -f $(MANDIR)/man1/$(MAN).gz 2>/dev/null

@@ -30,7 +30,10 @@ std::string getContentFromEditor (std::string initial_content) {
 
 	std::string command = "vim " + filename;
 	// getting the input from the vim command
-	system (command.c_str());
+	int status = system (command.c_str());
+
+	if (status == -1)
+		fprintf(stderr , "Internal Error. Please Check Command");
 
 	std::ifstream ifile (filename);
 	std::string final_content = "";
