@@ -130,6 +130,7 @@ int main (int argc, char* argv[]) {
 				fprintf (stderr, "Restore Failed..!\n");
 			}
 		}
+	}
 	else if (arg[1] == "version") {
 		cout <<VERSION<<endl;
 	}
