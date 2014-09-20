@@ -25,7 +25,7 @@ int main (int argc, char* argv[]) {
 
 	todo_t* todo = new todo_t();
 
-	// Calculating the default URL of the file ie. ~/.todo.txt
+	// Estimating the default URL of the file ie. ~/.todo.txt
 	struct passwd *pw = getpwuid(getuid());
 	const char *homedir = pw->pw_dir;
 
@@ -104,6 +104,31 @@ int main (int argc, char* argv[]) {
 	else if (arg[1] == "help") {
 		printHelp ();
 	}
+	else if (arg[1] == "backup") {
+		// Take the backup of ~/.todo.txt and save it.
+		string backupFile = "./todo.backup";
+		ofile.open (backupFile);
+		if (ofile.is_open()) {
+			ofile<<todo->toStringAll();
+			ofile.close();
+			cout<<"Backup Complete..!\n";
+		}
+		else {
+			fprintf (stderr, "Please contact the kt.krishna.tulsyan@gmail.com with the further Info..\n");
+		}
+	}
+	else if (arg[1] == "restore") {
+		// Take the backedup file and restore it.
+		if (arg[2] == "") {
+			string command = "cp ./todo.backup " + filename;
+			if (system (command.c_str()) == 0) {
+				cout<<"Restore Completed..!\n";
+			}
+			else {
+				fprintf (stderr, "Restore Failed..!\n");
+			}
+		}
+	}
 	else if (isNumber (arg[1])) {
 		if (arg[2].length() == 0 || argc < 3) {
 			fprintf (stderr, "What do you want me todo with this task?\n");
@@ -153,6 +178,7 @@ int main (int argc, char* argv[]) {
 			printHelp();
 		}
 	}
+
 	else {
 		fprintf (stderr, "Unknown Option: %s\n", argv[1]);
 		printHelp();

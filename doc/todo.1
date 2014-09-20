@@ -18,6 +18,8 @@ todo <number> [done | undone]
 .br
 todo <number> [change | modify | edit] [<string>]
 .br
+todo [backup | restore]
+.br
 todo cleanup
 .br
 todo clear
@@ -45,6 +47,10 @@ add [ <string> ] - Adds task with entered data.
 cleanup - Removes all the done tasks.
 .br
 clear -	Removes all the tasks.
+.br
+backup - It creates the backup of the current todo file in the ./todo.backup
+.br
+restore - It restores the ./todo.backup to the home todo file (Therefore for this command to work we have to be in the directory containing ./todo.backup).
 .br
 help - Displays a Short Help message.
 .br
