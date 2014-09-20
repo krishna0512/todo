@@ -5,3 +5,4 @@
 bool isNumber (std::string);
 int toNumber (std::string);
 std::string getContentFromEditor (std::string);
+void printHelp (void);

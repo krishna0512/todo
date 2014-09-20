@@ -49,7 +49,7 @@ int main (int argc, char* argv[]) {
 		ifile.close();
 	}
 	else {
-		fprintf (stderr, "The todo database file was not created previously.\nSo I created the file.\n");
+		fprintf (stderr, "The todo database file was not created previously.\nSo I created the file.\nPlease Try Again.\n");
 		// Creating the File from ofstream;
 		ofile.open (filename);
 		ofile.close();
@@ -101,6 +101,9 @@ int main (int argc, char* argv[]) {
 		ofile<<todo->toStringAll();
 		ofile.close();
 	}
+	else if (arg[1] == "help") {
+		printHelp ();
+	}
 	else if (isNumber (arg[1])) {
 		if (arg[2].length() == 0 || argc < 3) {
 			fprintf (stderr, "What do you want me todo with this task?\n");
@@ -146,11 +149,13 @@ int main (int argc, char* argv[]) {
 			ofile.close();
 		}
 		else {
-			fprintf (stderr, "unknown option: %s\nusage :\n\ttodo [all]\n\ttodo list [all]\n\ttodo add [<string>]\n\ttodo <number> [remove | delete]\n\ttodo <number> [done | undone]\n\ttodo <number> [change | modify | edit] [<string>]\n\ttodo cleanup\n\ttodo clear.\n" , argv[2]);
+			fprintf (stderr, "Unknown Option: %s\n", argv[2]);
+			printHelp();
 		}
 	}
 	else {
-		fprintf (stderr, "unknown option: %s\nusage :\n\ttodo [all]\n\ttodo list [all]\n\ttodo add [<string>]\n\ttodo <number> [remove | delete]\n\ttodo <number> [done | undone]\n\ttodo <number> [change | modify | edit] [<string>]\n\ttodo cleanup\n\ttodo clear.\n" , argv[1]);
+		fprintf (stderr, "Unknown Option: %s\n", argv[1]);
+		printHelp();
 	}
 
 	exit (EXIT_SUCCESS);
