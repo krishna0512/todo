@@ -15,6 +15,18 @@ _todo()
 
 	COMMANDS='all list add cleanup clear help version backup restore'
 
+	if [ -f *.backup ]
+	then
+		if [ -f .*.backup ]
+		then
+			BACKUP_FILES=`ls -A *.backup .*.backup`
+		else
+			BACKUP_FILES=`ls -A *.backup`
+		fi
+	else
+		BACKUP_FILES=""
+	fi
+
 	if [ "$max" -eq "0" ]
 	then
 		NUMBERS=""
@@ -26,7 +38,7 @@ _todo()
 	then
 		if [ "$prev" -le "$max" ]
 		then
-			completions="remove delete done undone change modify edit"
+			completions="remove delete done undone change modify edit list"
 		else
 			completions="$NUMBERS"
 		fi
@@ -45,7 +57,7 @@ _todo()
 				completions=""
 				;;
 			restore)
-				completions=""
+				completions="$BACKUP_FILES"
 				;;
 			cleanup)
 				completions=""

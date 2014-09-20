@@ -17,6 +17,8 @@
 
 using namespace std;
 
+string backupFile = "./todo.backup";
+
 int main (int argc, char* argv[]) {
 	// converting all options to the string format
 	string arg[100];
@@ -40,15 +42,28 @@ int main (int argc, char* argv[]) {
 	ifstream ifile;
 	ofstream ofile;
 
-	// Load the initial file data to the todo class (if any).
+	bool isCorrupt = false;
+
+	// Load the initial file data to the todo class (if any) and attempt recovery if corrupt.
 	ifile.open (filename);
 	if (ifile.is_open()) {
 		string line;
 		while (getline (ifile, line)) {
-			task_t* temp = new task_t (line);
-			todo->push (temp);
+			if (!isValidString (line)) {
+				if (!isCorrupt) {
+					isCorrupt = true;
+					fprintf (stderr , "The todo database file is corrupt.\nAttempting Recovery\n");
+				}
+			}
+			else {
+				task_t* temp = new task_t (line);
+				todo->push (temp);
+			}
 		}
 		ifile.close();
+		ofile.open(filename);
+		ofile<<todo->toStringAll();
+		ofile.close();
 	}
 	else {
 		fprintf (stderr, "The todo database file was not created previously.\nSo I created the file.\nPlease Try Again.\n");
@@ -85,11 +100,16 @@ int main (int argc, char* argv[]) {
 	else if (arg[1] == "add") {
 		string content = "";
 		// creating the content to be added from all the later paramerters.
-		for (int i=2;i<argc;i++) content += " " + arg[i];
+		for (int i=2;i<argc;i++) {
+			content += " " + arg[i];
+		}
+
 		content.erase (0,1);
 
 		// if there is no content provided then open the vim and ask for the content
-		if (content.length() == 0) content += getContentFromEditor ("");
+		if (content.length() == 0) {
+			content += getContentFromEditor ("");
+		}
 
 		if (content.length() == 0) {
 			fprintf (stderr, "This implementation still lacks AI, so you gotta tell what todo you wanna save..\n");
@@ -108,27 +128,35 @@ int main (int argc, char* argv[]) {
 	}
 	else if (arg[1] == "backup") {
 		// Take the backup of ~/.todo.txt and save it.
-		string backupFile = "./todo.backup";
-		ofile.open (backupFile);
+		ofile.open(backupFile);
 		if (ofile.is_open()) {
 			ofile<<todo->toStringAll();
 			ofile.close();
-			cout<<"Backup Complete..!\n";
+			fprintf(stdout , "Backup Complete..!\n");
 		}
 		else {
-			fprintf (stderr, "Please contact the kt.krishna.tulsyan@gmail.com with the further Info..\n");
+			fprintf (stderr, "Please contact the kt.krishna.tulsyan@gmail.com with the further Info..\n"); //only happens on permissions denied.
 		}
 	}
 	else if (arg[1] == "restore") {
 		// Take the backedup file and restore it.
 		if (arg[2] == "") {
-			string command = "cp ./todo.backup " + filename;
-			if (system (command.c_str()) == 0) {
-				cout<<"Restore Completed..!\n";
-			}
-			else {
-				fprintf (stderr, "Restore Failed..!\n");
-			}
+			ifile.open(backupFile);
+		}
+		else {
+			ifile.open(arg[2]);
+		}
+
+		if (ifile.is_open())
+		{
+			ofile.open(filename);
+			ofile<<ifile.rdbuf();
+			ofile.close();
+			ifile.close();
+			fprintf(stdout , "Restore Completed..!\n");
+		}
+		else {
+			fprintf (stderr, "Restore Failed..!\n"); //only happens on permissions denied.
 		}
 	}
 	else if (arg[1] == "version") {
@@ -177,6 +205,9 @@ int main (int argc, char* argv[]) {
 			ofile.open(filename);
 			ofile<<todo->toStringAll();
 			ofile.close();
+		}
+		else if(arg[2] == "list") {
+			cout<<todo->toStringSingleFormatted(x);
 		}
 		else {
 			fprintf (stderr, "Unknown Option: %s\n", argv[2]);
