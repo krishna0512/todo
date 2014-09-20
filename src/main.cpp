@@ -13,6 +13,8 @@
 #include "include/todo.h"
 #include "include/utility.h"
 
+#define VERSION "0.01"
+
 using namespace std;
 
 int main (int argc, char* argv[]) {
@@ -103,6 +105,9 @@ int main (int argc, char* argv[]) {
 	}
 	else if (arg[1] == "help") {
 		printHelp ();
+	}
+	else if (arg[1] == "version") {
+		cout <<VERSION<<endl;
 	}
 	else if (isNumber (arg[1])) {
 		if (arg[2].length() == 0 || argc < 3) {

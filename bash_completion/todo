@@ -13,7 +13,7 @@ _todo()
 		max=`wc -l ~/.todo.txt | cut -d' ' -f1`
 	fi
 
-	COMMANDS='all list add cleanup clear'
+	COMMANDS='all list add cleanup clear help version'
 
 	if [ "$max" -eq "0" ]
 	then
@@ -66,6 +66,12 @@ _todo()
 				completions=""
 				;;
 			done)
+				completions=""
+				;;
+			help)
+				completions=""
+				;;
+			version)
 				completions=""
 				;;
 			*)
