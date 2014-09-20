@@ -28,7 +28,14 @@ std::string getContentFromEditor (std::string initial_content) {
 		ofile.close();
 	}
 
-	std::string command = "vim " + filename;
+	std::string command = "";
+	if (system ("command -v vim")) {
+		command = "nano " + filename;
+	}
+	else {
+		command = "vim " + filename;
+	}
+
 	// getting the input from the vim command
 	int status = system (command.c_str());
 
