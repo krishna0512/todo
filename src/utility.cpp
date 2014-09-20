@@ -2,7 +2,6 @@
 #include <string>
 #include <fstream>
 // #include <regex>
-#include <iostream>
 
 bool isValidString (std::string s) {
 //	std::regex e ("\\[(x|\\ )\\]\\ .+");
