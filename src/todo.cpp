@@ -76,10 +76,13 @@ void todo_t::clear (void) {
 }
 
 void todo_t::cleanup (void) {
-	for (auto i=this->m_list.begin(); i!=this->m_list.end();i++) {
+	for (auto i=this->m_list.begin(); i!=this->m_list.end();) {
 		if ((*i)->m_state == true) {
 			this->m_list.erase(i);
 			this->m_length--;
+		}
+		else {
+			i++;
 		}
 	}
 }
