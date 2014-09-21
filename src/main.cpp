@@ -72,7 +72,7 @@ int main (int argc, char* argv[]) {
 		// Creating the File from ofstream;
 		ofile.open (filename);
 		ofile.close();
-		exit (EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	}
 
 	// TODO: add the exception handling to the file IO code after this point.
@@ -175,7 +175,7 @@ int main (int argc, char* argv[]) {
 
 		if (x<1 || x>todo->size()) {
 			fprintf (stderr, "Enter a valid todo number.\n");
-			exit (EXIT_FAILURE);
+			return (EXIT_FAILURE);
 		}
 
 		if (arg[2] == "done") {
@@ -223,5 +223,5 @@ int main (int argc, char* argv[]) {
 		printHelp();
 	}
 
-	exit (EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }
