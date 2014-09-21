@@ -80,5 +80,5 @@ std::string getContentFromEditor (std::string initial_content) {
 }
 
 void printHelp (void) {
-	printf ("usage :\n\ttodo [all]\n\ttodo list [all]\n\ttodo add [<string>]\n\ttodo <number> [remove | delete]\n\ttodo <number> [done | undone]\n\ttodo <number> [change | modify | edit] [<string>]\n\ttodo [backup | restore]\n\ttodo cleanup\n\ttodo clear\n\ttodo help.\n");
+	printf ("usage :\n\ttodo [all]\n\ttodo list [all]\n\ttodo add [<string>]\n\ttodo <number> [remove | delete]\n\ttodo <number> [list]\n\ttodo <number> [done | undone]\n\ttodo <number> [change | modify | edit] [<string>]\n\ttodo [backup | restore]\n\ttodo cleanup\n\ttodo clear\n\ttodo help.\n");
 }

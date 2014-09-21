@@ -5,6 +5,7 @@ _todo()
 	COMPREPLY=()
 	cur=${COMP_WORDS[COMP_CWORD]}
 	prev=${COMP_WORDS[COMP_CWORD-1]}
+	twoprev=${COMP_WORDS[COMP_CWORD-2]}
 
 	if [ ! -f ~/.todo.txt ] 
 	then
@@ -19,13 +20,15 @@ _todo()
 	then
 		if [ -f .*.backup ]
 		then
-			BACKUP_FILES=`ls -A *.backup .*.backup`
+			BACKUP_FILES=`ls -mA *.backup .*.backup`
 		else
-			BACKUP_FILES=`ls -A *.backup`
+			BACKUP_FILES=`ls -mA *.backup`
 		fi
 	else
 		BACKUP_FILES=""
 	fi
+
+	BACKUP_FILES=${BACKUP_FILES//,/}
 
 	if [ "$max" -eq "0" ]
 	then
@@ -34,69 +37,86 @@ _todo()
 		NUMBERS=`seq 1 1 $max`
 	fi
 
-	if [[ "$prev" =~ ^-?[0-9]+$ ]]
+	if [[ "$prev" =~ ^[1-9][0-9]*?$ ]]
 	then
 		if [ "$prev" -le "$max" ]
 		then
 			completions="remove delete done undone change modify edit list"
 		else
-			completions="$NUMBERS"
+			completions=""
 		fi
 	else
-		case "${prev}" in
-			all)
-				completions=""
-				;;
-			list)
-				completions="all"
-				;;
-			add)
-				completions=""
-				;;
-			backup)
-				completions=""
-				;;
-			restore)
-				completions="$BACKUP_FILES"
-				;;
-			cleanup)
-				completions=""
-				;;
-			clear)
-				completions=""
-				;;
-			remove)
-				completions=""
-				;;
-			delete)
-				completions=""
-				;;
-			undone)
-				completions=""
-				;;
-			change)
-				completions=""
-				;;
-			modify)
-				completions=""
-				;;
-			edit)
-				completions=""
-				;;
-			done)
-				completions=""
-				;;
-			help)
-				completions=""
-				;;
-			version)
-				completions=""
-				;;
-			*)
-				completions="$COMMANDS $NUMBERS"
-				;;
-		esac
+		if [[ "$prev" =~ ^(-.*)|(0.*)$ ]]
+		then 
+			completions=""
+		else
+			case "${prev}" in
+				all)
+					completions=""
+					;;
+				list)
+					if [[ "$twoprev" =~ ^[1-9][0-9]*?$ ]]
+					then 
+						completions=""
+					else
+						completions="all"
+					fi
+					;;
+				add)
+					completions=""
+					;;
+				backup)
+					completions=""
+					;;
+				restore)
+					completions="$BACKUP_FILES"
+					;;
+				cleanup)
+					completions=""
+					;;
+				clear)
+					completions=""
+					;;
+				remove)
+					completions=""
+					;;
+				delete)
+					completions=""
+					;;
+				undone)
+					completions=""
+					;;
+				change)
+					completions=""
+					;;
+				modify)
+					completions=""
+					;;
+				edit)
+					completions=""
+					;;
+				done)
+					completions=""
+					;;
+				help)
+					completions=""
+					;;
+				version)
+					completions=""
+					;;
+				*)
+					completions="$COMMANDS $NUMBERS"
+					;;
+			esac
+		fi
 	fi
+
+	if [[ "$cur" =~ ^-.*$ ]]
+	then
+		completions=""
+		cur=""
+	fi
+	
 	COMPREPLY=( $( compgen -W "$completions" $cur ))
 	return 0
 }
