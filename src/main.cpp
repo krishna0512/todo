@@ -61,9 +61,11 @@ int main (int argc, char* argv[]) {
 			}
 		}
 		ifile.close();
-		ofile.open(filename);
-		ofile<<todo->toStringAll();
-		ofile.close();
+		if (isCorrupt) {
+			ofile.open(filename);
+			ofile<<todo->toStringAll();
+			ofile.close();
+		}
 	}
 	else {
 		fprintf (stderr, "The todo database file was not created previously.\nSo I created the file.\nPlease Try Again.\n");
