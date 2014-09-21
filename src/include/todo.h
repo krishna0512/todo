@@ -47,6 +47,7 @@ class todo_t {
 		std::string toStringAll (void);
 		std::string toStringAllFormatted (void);
 		std::string toStringUndoneFormatted (void);
+		std::string toStringSingleFormatted (int);
 };
 
 #endif

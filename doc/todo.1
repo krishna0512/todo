@@ -14,6 +14,8 @@ todo add [<string>]
 .br
 todo <number> [remove | delete]
 .br
+todo <number> [list]
+.br
 todo <number> [done | undone]
 .br
 todo <number> [change | modify | edit] [<string>]
@@ -40,6 +42,8 @@ add [ <string> ] - Adds task with entered data.
 .br
 <number> [ remove | delete ] - Applies selected operations task <number>.
 .br
+<number> [ list ] - Lists task <number>
+.br
 <number> [ done | undone ] - Marks task <number>.
 .br
 <number> [ change | modify | edit ] [ <string> ] - Updated task <number> with data <string>
@@ -50,13 +54,13 @@ clear -	Removes all the tasks.
 .br
 backup - It creates the backup of the current todo file in the ./todo.backup
 .br
-restore - It restores the ./todo.backup to the home todo file (Therefore for this command to work we have to be in the directory containing ./todo.backup).
+restore - It restores the ./todo.backup to the home todo file. It also accepts commandline arguments to a valid todo file.
 .br
 help - Displays a Short Help message.
 .br
 
 .SH BUGS
-Cleanup Not Working. Please avoid using cleanup. 
+No known bugs.
 .br
 For bug reporting found, report at https://github.com/krishna0512/todo/.
 

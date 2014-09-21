@@ -1,6 +1,32 @@
 #include "include/utility.h"
 #include <string>
 #include <fstream>
+// #include <regex>
+
+bool isValidString (std::string s) {
+//	std::regex e ("\\[(x|\\ )\\]\\ .+");
+//	if (std::regex_match(s , e))
+//		return true;
+//
+//	regex not compatable in gcc < 4.9
+//
+//
+
+	unsigned int index = s.find_first_of('[');
+	if (index >= s.length())
+		return false;
+
+	s = s.substr( index );
+
+	
+	if (s.length() <= 4)
+		return false;
+
+	if ((s[0] != '[') || ((s[1] != 'x') && (s[1] != ' ')) || (s[2] != ']') || (s[3] != ' '))
+		return false;
+
+	return true;
+}
 
 bool isNumber (std::string s) {
 	int n=s.length();
@@ -54,5 +80,5 @@ std::string getContentFromEditor (std::string initial_content) {
 }
 
 void printHelp (void) {
-	printf ("\nusage :\n\ttodo [all]\n\ttodo list [all]\n\ttodo add [<string>]\n\ttodo <number> [remove | delete]\n\ttodo <number> [done | undone]\n\ttodo <number> [change | modify | edit] [<string>]\n\ttodo [backup | restore]\n\ttodo cleanup\n\ttodo clear\n\ttodo help.\n");
+	printf ("usage :\n\ttodo [all]\n\ttodo list [all]\n\ttodo add [<string>]\n\ttodo <number> [remove | delete]\n\ttodo <number> [list]\n\ttodo <number> [done | undone]\n\ttodo <number> [change | modify | edit] [<string>]\n\ttodo [backup | restore]\n\ttodo cleanup\n\ttodo clear\n\ttodo help.\n");
 }

@@ -135,4 +135,17 @@ std::string todo_t::toStringUndoneFormatted (void) {
 	return ret;
 }
 
+std::string todo_t::toStringSingleFormatted (int index) {
+	std::string ret;
+	// blue color
+	ret = "\x1b[34m"
+		+ std::to_string(index)
+		+ ".  "
+		// reset color.
+		+ "\x1b[0m"
+		+ this->m_list[index-1]->toStringFormatted()
+		+ "\n";
+	return ret;
+}
+
 #endif
