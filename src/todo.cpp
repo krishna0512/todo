@@ -8,7 +8,9 @@ todo_t::todo_t (void) {
 }
 
 todo_t::~todo_t (void) {
-
+	for (auto i = this->m_list.begin() ; i < this->m_list.end() ; i++)
+		delete *i;
+	this->m_list.clear();
 }
 
 size_t todo_t::size (void) {

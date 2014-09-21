@@ -80,9 +80,6 @@ bool task_t::equals (task_t* t) {
 }
 
 task_t::~task_t (void) {
-	this->m_state = 0;
-	this->m_content.clear();
-	this->m_size = 0;
 }
 
 

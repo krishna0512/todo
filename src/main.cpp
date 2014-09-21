@@ -223,5 +223,6 @@ int main (int argc, char* argv[]) {
 		printHelp();
 	}
 
+	delete todo;
 	return (EXIT_SUCCESS);
 }
