@@ -165,12 +165,13 @@ int main (int argc, char* argv[]) {
 		cout <<VERSION<<endl;
 	}
 	else if (isNumber (arg[1])) {
-		if (arg[2].length() == 0 || argc < 3) {
-			fprintf (stderr, "What do you want me todo with this task?\n");
-			exit (EXIT_FAILURE);
-		}
 		// Converting string to int;
 		int x = toNumber (arg[1]);
+
+		if (arg[2].length() == 0 || argc < 3) {
+			cout<<todo->toStringSingleFormatted(x);
+			return (EXIT_SUCCESS);
+		}
 
 		if (x<1 || x>todo->size()) {
 			fprintf (stderr, "Enter a valid todo number.\n");
