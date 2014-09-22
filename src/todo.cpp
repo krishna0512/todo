@@ -17,8 +17,9 @@ size_t todo_t::size (void) {
 	return this->m_length;
 }
 
-void todo_t::push (task_t* task) {
-	this->m_list.push_back (task);
+void todo_t::push (task_t task) {
+	task_t *temp = new task_t(task);
+	this->m_list.push_back (temp);
 	this->m_length++;
 }
 

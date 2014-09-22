@@ -56,7 +56,9 @@ int main (int argc, char* argv[]) {
 				}
 			}
 			else {
-				task_t* temp = new task_t (line);
+				// task_t* temp = new task_t (line);
+				// todo->push (temp);
+				task_t temp = task_t (line);
 				todo->push (temp);
 			}
 		}
@@ -118,8 +120,10 @@ int main (int argc, char* argv[]) {
 			return (EXIT_FAILURE);
 		}
 
-		task_t* task = new task_t(content, false);
-		todo->push (task);
+		//task_t* task = new task_t(content, false);
+		//todo->push (task);
+		task_t temp = task_t (content , false);
+		todo->push (temp);
 
 		ofile.open (filename);
 		ofile<<todo->toStringAll();
