@@ -74,6 +74,8 @@ int main (int argc, char* argv[]) {
 		// Creating the File from ofstream;
 		ofile.open (filename);
 		ofile.close();
+
+		delete todo;
 		return (EXIT_FAILURE);
 	}
 
@@ -117,6 +119,8 @@ int main (int argc, char* argv[]) {
 
 		if (content.length() == 0) {
 			fprintf (stderr, "This implementation still lacks AI, so you gotta tell what todo you wanna save..\n");
+
+			delete todo;
 			return (EXIT_FAILURE);
 		}
 
@@ -174,11 +178,12 @@ int main (int argc, char* argv[]) {
 
 		if (arg[2].length() == 0 || argc < 3) {
 			cout<<todo->toStringSingleFormatted(x);
-			return (EXIT_SUCCESS);
 		}
 
 		if (x<1 || x>todo->size()) {
 			fprintf (stderr, "Enter a valid todo number.\n");
+
+			delete todo;
 			return (EXIT_FAILURE);
 		}
 
