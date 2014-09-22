@@ -176,10 +176,6 @@ int main (int argc, char* argv[]) {
 		// Converting string to int;
 		int x = toNumber (arg[1]);
 
-		if (arg[2].length() == 0 || argc < 3) {
-			cout<<todo->toStringSingleFormatted(x);
-		}
-
 		if (x<1 || x>todo->size()) {
 			fprintf (stderr, "Enter a valid todo number.\n");
 
@@ -187,7 +183,10 @@ int main (int argc, char* argv[]) {
 			return (EXIT_FAILURE);
 		}
 
-		if (arg[2] == "done") {
+		if (arg[2].length() == 0 || argc < 3) {
+			cout<<todo->toStringSingleFormatted(x);
+		}
+		else if (arg[2] == "done") {
 			todo->setDone(x);
 
 			ofile.open (filename);

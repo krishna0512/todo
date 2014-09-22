@@ -65,6 +65,7 @@ int todo_t::erase (int index) {
 
 	for (int i=0;i<this->m_length;i++) {
 		if (i+1 == index) {
+			delete this->m_list[i];
 			this->m_list.erase(this->m_list.begin() + i);
 			this->m_length--;
 			return 1;
@@ -81,6 +82,7 @@ void todo_t::clear (void) {
 void todo_t::cleanup (void) {
 	for (auto i=this->m_list.begin(); i!=this->m_list.end();) {
 		if ((*i)->m_state == true) {
+			delete *i;
 			this->m_list.erase(i);
 			this->m_length--;
 		}
