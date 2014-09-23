@@ -56,7 +56,9 @@ int main (int argc, char* argv[]) {
 				}
 			}
 			else {
-				task_t* temp = new task_t (line);
+				// task_t* temp = new task_t (line);
+				// todo->push (temp);
+				task_t temp = task_t (line);
 				todo->push (temp);
 			}
 		}
@@ -72,7 +74,9 @@ int main (int argc, char* argv[]) {
 		// Creating the File from ofstream;
 		ofile.open (filename);
 		ofile.close();
-		exit (EXIT_FAILURE);
+
+		delete todo;
+		return (EXIT_FAILURE);
 	}
 
 	// TODO: add the exception handling to the file IO code after this point.
@@ -115,11 +119,15 @@ int main (int argc, char* argv[]) {
 
 		if (content.length() == 0) {
 			fprintf (stderr, "This implementation still lacks AI, so you gotta tell what todo you wanna save..\n");
+
+			delete todo;
 			return (EXIT_FAILURE);
 		}
 
-		task_t* task = new task_t(content, false);
-		todo->push (task);
+		//task_t* task = new task_t(content, false);
+		//todo->push (task);
+		task_t temp = task_t (content , false);
+		todo->push (temp);
 
 		ofile.open (filename);
 		ofile<<todo->toStringAll();
@@ -168,17 +176,17 @@ int main (int argc, char* argv[]) {
 		// Converting string to int;
 		int x = toNumber (arg[1]);
 
-		if (arg[2].length() == 0 || argc < 3) {
-			cout<<todo->toStringSingleFormatted(x);
-			return (EXIT_SUCCESS);
-		}
-
 		if (x<1 || x>todo->size()) {
 			fprintf (stderr, "Enter a valid todo number.\n");
-			exit (EXIT_FAILURE);
+
+			delete todo;
+			return (EXIT_FAILURE);
 		}
 
-		if (arg[2] == "done") {
+		if (arg[2].length() == 0 || argc < 3) {
+			cout<<todo->toStringSingleFormatted(x);
+		}
+		else if (arg[2] == "done") {
 			todo->setDone(x);
 
 			ofile.open (filename);
@@ -223,5 +231,6 @@ int main (int argc, char* argv[]) {
 		printHelp();
 	}
 
-	exit (EXIT_SUCCESS);
+	delete todo;
+	return (EXIT_SUCCESS);
 }
